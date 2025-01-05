@@ -1,0 +1,23 @@
+{% extends 'master.html' %}
+{% block body %}
+<section id="form" style="margin-left:30%;margin-top:30px"><!--form-->
+		<div class="container">
+			<div class="col-sm-4 col-sm-offset-1">
+				<div class="signup-form"><!--login form-->
+					<h2>Log in to account</h2>
+					<form method="post" >
+						{% csrf_token %}
+						{% for field in form %}
+							{{ field.errors }}
+							<label>{{field.label_tag}}</label>
+							<p>{{ field }}</p>
+						{% endfor %}
+						<a href="{% url 'password_reset' %}" style="float:right;">Forgot Password ?</a><br>
+						<button class="btn btn-default" type="submit">Log In</button><br>
+						<span style="margin-left:80px;">Already have an Account&nbsp;&rarr;&nbsp;</span><a href="{% url 'signup' %}">signup</a>
+					</form>
+				</div><!--login form-->
+			</div>
+		</div>
+</section>
+{% endblock %}

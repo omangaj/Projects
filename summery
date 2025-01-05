@@ -1,0 +1,1319 @@
+setting.py
+    import os
+    TEMPLATE_DIR=os.path.join(BASE_DIR, "templates")
+    DIRS': [TEMPLATE_DIR]
+
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'E_commerce',
+        'USER': 'root',
+        'PASSWORD': 'omkar@2848',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            #'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            "init_command": "SET foreign_key_checks = 0;",
+
+            }
+        }
+    }
+
+    STATIC_URL = ''/static/''
+    STATIC_ROOT = ''/static/''
+
+    STATICFILES_DIRS=[
+        BASE_DIR / "static"
+    ]
+
+templates
+    master.html
+    index.html
+static
+    css
+    fonts
+    images
+    js
+
+master.html
+    all js and bootstrap files link with static folder href="static/(file_path)"
+    load static after head like {% load static %}
+    after end of header and before start footer use block body tag
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Home | E-Shopper</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/prettyPhoto.css" rel="stylesheet">
+        <link href="css/price-range.css" rel="stylesheet">
+        <link href="css/animate.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/responsive.css" rel="stylesheet">
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+        <link rel="shortcut icon" href="images/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    </head><!--/head-->
+
+    <body>
+    <header id="header"><!--header-->
+            <div class="header_top"><!--header_top-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="contactinfo">
+                                <ul class="nav nav-pills">
+                                    <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="social-icons pull-right">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/header_top-->
+
+            <div class="header-middle"><!--header-middle-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="logo pull-left">
+                                <a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+                            </div>
+                            <div class="btn-group pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                        USA
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Canada</a></li>
+                                        <li><a href="#">UK</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                        DOLLAR
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Canadian Dollar</a></li>
+                                        <li><a href="#">Pound</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="shop-menu pull-right">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+                                    <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                    <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/header-middle-->
+
+            <div class="header-bottom"><!--header-bottom-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="mainmenu pull-left">
+                                <ul class="nav navbar-nav collapse navbar-collapse">
+                                    <li><a href="index.html" class="active">Home</a></li>
+                                    <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                        <ul role="menu" class="sub-menu">
+                                            <li><a href="shop.html">Products</a></li>
+                                            <li><a href="product-details.html">Product Details</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="login.html">Login</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                                        <ul role="menu" class="sub-menu">
+                                            <li><a href="blog.html">Blog List</a></li>
+                                            <li><a href="blog-single.html">Blog Single</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="404.html">404</a></li>
+                                    <li><a href="contact-us.html">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="search_box pull-right">
+                                <input type="text" placeholder="Search"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/header-bottom-->
+        </header><!--/header-->
+
+
+
+
+
+    <footer id="footer"><!--Footer-->
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="companyinfo">
+                                <h2><span>e</span>-shopper</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="col-sm-3">
+                                <div class="video-gallery text-center">
+                                    <a href="#">
+                                        <div class="iframe-img">
+                                            <img src="images/home/iframe1.png" alt="" />
+                                        </div>
+                                        <div class="overlay-icon">
+                                            <i class="fa fa-play-circle-o"></i>
+                                        </div>
+                                    </a>
+                                    <p>Circle of Hands</p>
+                                    <h2>24 DEC 2014</h2>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="video-gallery text-center">
+                                    <a href="#">
+                                        <div class="iframe-img">
+                                            <img src="images/home/iframe2.png" alt="" />
+                                        </div>
+                                        <div class="overlay-icon">
+                                            <i class="fa fa-play-circle-o"></i>
+                                        </div>
+                                    </a>
+                                    <p>Circle of Hands</p>
+                                    <h2>24 DEC 2014</h2>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="video-gallery text-center">
+                                    <a href="#">
+                                        <div class="iframe-img">
+                                            <img src="images/home/iframe3.png" alt="" />
+                                        </div>
+                                        <div class="overlay-icon">
+                                            <i class="fa fa-play-circle-o"></i>
+                                        </div>
+                                    </a>
+                                    <p>Circle of Hands</p>
+                                    <h2>24 DEC 2014</h2>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="video-gallery text-center">
+                                    <a href="#">
+                                        <div class="iframe-img">
+                                            <img src="images/home/iframe4.png" alt="" />
+                                        </div>
+                                        <div class="overlay-icon">
+                                            <i class="fa fa-play-circle-o"></i>
+                                        </div>
+                                    </a>
+                                    <p>Circle of Hands</p>
+                                    <h2>24 DEC 2014</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="address">
+                                <img src="images/home/map.png" alt="" />
+                                <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="footer-widget">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="single-widget">
+                                <h2>Service</h2>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">Online Help</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Order Status</a></li>
+                                    <li><a href="#">Change Location</a></li>
+                                    <li><a href="#">FAQ’s</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="single-widget">
+                                <h2>Quock Shop</h2>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">T-Shirt</a></li>
+                                    <li><a href="#">Mens</a></li>
+                                    <li><a href="#">Womens</a></li>
+                                    <li><a href="#">Gift Cards</a></li>
+                                    <li><a href="#">Shoes</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="single-widget">
+                                <h2>Policies</h2>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">Terms of Use</a></li>
+                                    <li><a href="#">Privecy Policy</a></li>
+                                    <li><a href="#">Refund Policy</a></li>
+                                    <li><a href="#">Billing System</a></li>
+                                    <li><a href="#">Ticket System</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="single-widget">
+                                <h2>About Shopper</h2>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">Company Information</a></li>
+                                    <li><a href="#">Careers</a></li>
+                                    <li><a href="#">Store Location</a></li>
+                                    <li><a href="#">Affillate Program</a></li>
+                                    <li><a href="#">Copyright</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <div class="single-widget">
+                                <h2>About Shopper</h2>
+                                <form action="#" class="searchform">
+                                    <input type="text" placeholder="Your email address" />
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                                    <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+                        <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+                    </div>
+                </div>
+            </div>
+
+        </footer><!--/Footer-->
+
+
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.scrollUp.min.js"></script>
+        <script src="js/price-range.js"></script>
+        <script src="js/jquery.prettyPhoto.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+    </html>
+
+urls.py
+    from .import views
+    path('master/',views.Master,name="master"),
+
+create another views.py in project E-shop
+views.py
+    def Master(request):
+        return render(request, "master.html")
+
+index.py
+    extends master.html {% extends 'master.html' %}
+    write index code in block body {% block body %} code {% endbody %}
+
+    <section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#slider-carousel" data-slide-to="1"></li>
+							<li data-target="#slider-carousel" data-slide-to="2"></li>
+						</ol>
+
+						<div class="carousel-inner">
+							<div class="item active">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>Free E-Commerce Template</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="/static/images/home/girl1.jpg" class="girl img-responsive" alt="" />
+									<img src="/static/images/home/pricing.png"  class="pricing" alt="" />
+								</div>
+							</div>
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>100% Responsive Design</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="/static/images/home/girl2.jpg" class="girl img-responsive" alt="" />
+									<img src="/static/images/home/pricing.png"  class="pricing" alt="" />
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>Free Ecommerce Template</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="/static/images/home/girl3.jpg" class="girl img-responsive" alt="" />
+									<img src="/static/images/home/pricing.png" class="pricing" alt="" />
+								</div>
+							</div>
+
+						</div>
+
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->
+    <section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>Category</h2>
+						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+											Sportswear
+										</a>
+									</h4>
+								</div>
+								<div id="sportswear" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul>
+											<li><a href="#">Nike </a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+						</div><!--/category-products-->
+
+						<div class="brands_products"><!--brands_products-->
+							<h2>Brands</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
+									<li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
+									<li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
+									<li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
+									<li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
+									<li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
+									<li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
+								</ul>
+							</div>
+						</div><!--/brands_products-->
+
+						<div class="price-range"><!--price-range-->
+							<h2>Price Range</h2>
+							<div class="well text-center">
+								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+								 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+							</div>
+						</div><!--/price-range-->
+
+						<div class="shipping text-center"><!--shipping-->
+							<img src="images/home/shipping.jpg" alt="" />
+						</div><!--/shipping-->
+
+					</div>
+				</div>
+
+				<div class="col-sm-9 padding-right">
+
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Features Items</h2>
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="images/home/product1.jpg" alt="" />
+											<h2>$56</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+										<div class="product-overlay">
+											<div class="overlay-content">
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+										</div>
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div><!--features_items-->
+
+					<div class="category-tab"><!--category-tab-->
+						<div class="col-sm-12">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
+								<li><a href="#blazers" data-toggle="tab">Blazers</a></li>
+								<li><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
+								<li><a href="#kids" data-toggle="tab">Kids</a></li>
+								<li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
+							</ul>
+						</div>
+						<div class="tab-content">
+							<div class="tab-pane fade active in" id="tshirt" >
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery1.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery2.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery3.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery4.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane fade" id="blazers" >
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery4.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery3.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery2.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery1.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane fade" id="sunglass" >
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery3.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery4.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery1.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery2.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane fade" id="kids" >
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery1.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery2.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery3.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery4.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="tab-pane fade" id="poloshirt" >
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery2.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery4.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery3.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery1.jpg" alt="" />
+												<h2>$56</h2>
+												<p>Easy Polo Black Edition</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!--/category-tab-->
+
+					<div class="recommended_items"><!--recommended_items-->
+						<h2 class="title text-center">recommended items</h2>
+
+						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+								<div class="item active">
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend1.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend2.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend3.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend1.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend2.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend3.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+								<i class="fa fa-angle-left"></i>
+							  </a>
+							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+								<i class="fa fa-angle-right"></i>
+							  </a>
+						</div>
+					</div><!--/recommended_items-->
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+urls.py
+    path('index/',views.Index,name="index"),
+
+views.py
+    def Index(request):
+        return render(request, "index.html")
+
+models.py
+    class Categories(models.Model):
+        name=models.CharField(max_length=150)
+
+    class Sub_categories(models.Model):
+        name=models.CharField(max_length=150)
+        Category=models.ForeignKey(Categories,on_delete=models.CASCADE)
+
+    run commands makemigrations and migrate and open admin panel and add an data
+
+admin.py
+    admin.site.register(Categories)
+    admin.site.register(Sub_categories)
+
+views.py
+    def Index(request):
+        category = Categories.objects.all()
+        context = {
+            "category": category,
+        }
+        return render(request, "index.html", context)
+
+index.html
+create dynamic category
+
+    {% for cat in category %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordian" href="#{{cat.id}}">
+                    <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                    {{cat.name}}
+                </a>
+            </h4>
+        </div>
+        <div id="{{cat.id}}" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul>
+                    {% for i in cat.sub_categories_set.all %}
+                        <li><a href="#">{{i.name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+models.py
+    class Product(models.Model):
+        category=models.ForeignKey(Categories,on_delete=models.CASCADE,default="")
+        sub_category=models.ForeignKey(Sub_categories,on_delete=models.CASCADE,default="")
+        image=models.ImageField(upload_to="ecommerce/pro_img")
+        name=models.CharField(max_length=100)
+        price=models.FloatField()
+        date=models.DateTimeField(auto_now_add=True)
+
+admin.py
+    admin.site.register(Product)
+
+    run commands makemigrations and migrate and open admin panel and add an data
+
+Views.py
+    def Index
+        product=Product.objects.all()
+
+        context = {
+            "category": category,
+            "product": product
+        }
+
+index.html
+    <div class="features_items"><!--features_items-->
+        <h2 class="title text-center">Features Items</h2>
+        {% for prod in product %}
+        <div class="col-sm-4">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                        <div class="productinfo text-center">
+                            <img src="{{prod.image.url}}" alt="" height="300px"/>
+                            <h2>₹{{prod.price}}</h2>
+                            <p>{{prod.name}}</p>
+                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        </div>
+                        <div class="product-overlay">
+                            <div class="overlay-content">
+                                <img src="{{prod.image.url}}" alt="" height="200px" width="200px"/>
+                                <h2>₹{{prod.price}}</h2>
+                                <p>{{prod.name}}</p>
+                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            </div>
+                        </div>
+                </div>
+                <div class="choose">
+                    <ul class="nav nav-pills nav-justified">
+                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div><!--features_items-->
+
+filter the data by category
+views.py
+def Index(request):
+    category = Categories.objects.all()
+    product=Product.objects.all()
+    categoryID=request.GET.get('category')
+    if categoryID:
+        product=Product.objects.filter(sub_category=categoryID).order_by('-id')
+    else:
+        Product.objects.all()
+    context = {
+        "category": category,
+        "product": product
+    }
+    return render(request, "index.html", context)
+
+index.html
+    <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+        {% for cat in category %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordian" href="#{{cat.id}}">
+                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                        {{cat.name}}
+                    </a>
+                </h4>
+            </div>
+            <div id="{{cat.id}}" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul>
+                        {% for i in cat.sub_categories_set.all %}
+                            <li><a href="/?category={{i.id}}">{{i.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div><!--/category-products-->
+
+
+templates
+    registration
+        login.html
+        signup.html
+
+urls.py
+    from django.contrib import admin
+    from django.urls import path,include
+    from django.conf import settings
+    from django.conf.urls.static import static
+    from . import views
+
+    path('signup/', views.Signup, name="signup"),
+    path('accounts/', include('django.contrib.auth.urls')),
+
+
+signup.html
+    <section id="form"><!--form-->
+		<div class="container">
+			<div class="col-sm-4 col-sm-offset-1">
+				<div class="signup-form"><!--login form-->
+					<h2>New User Sign_Up</h2>
+					<form action="#">
+
+						<button class="btn btn-default" type="submit">SignUp</button>
+					</form>
+				</div>
+			</div>
+		</div>
+    </section>
+
+
+create model UserCreateForm for signup
+model.py
+    from django.contrib.auth.forms import UserCreationForm
+    from django.contrib.auth.models import User
+    from django import forms
+
+    class UserCreateForm(UserCreationForm):
+        email=forms.EmailField(required=True,label="Email",error_messages={'exists':'This Already exists'})
+
+        class mete:
+            model=User
+            fields=('username','email','password1','password2')
+
+        def __init__(self, *args, **kwargs):
+            super(UserCreateForm, self).__init__(*args, **kwargs)
+
+            self.fields['username'].widget.attrs['placeholder'] = 'User Name'
+            self.fields['email'].widget.attrs['placeholder'] = 'Email'
+            self.fields['password1'].widget.attrs['placeholder'] = 'Password'
+            self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
+
+        def save(self,commit=True):
+            user=super(UserCreateForm,self).save(commit=False)
+            user.email=self.cleaned_data['email']
+            if commit:
+                user.save()
+            return user
+
+        def clean_email(self):
+            if User.objects.filter(email=self.cleaned_data['email']).exists():
+                raise forms.ValidationError(self.fields['email'].error_message['exists'])
+            return self.cleaned_data['email']
+
+views.py
+    def Signup(request):
+        if request.method == 'POST':
+            form= UserCreateFoem(request.POST)
+            if form.is_valid():
+                new_user=form.save()
+                new_user=authenticate(
+                    username=form.cleaned_data['username'],
+                    password=form.cleaned_data['password1'],
+                )
+                login(request,new_user)
+                return redirect('index')
+        else:
+            form=UserCreateForm()
+
+        context={
+            "form": form,
+        }
+        return render(request,"registration/signup.html", context)
+
+
+signup.html
+        {% extends 'master.html' %}
+        {% block body %}
+        <section id="form" style="margin-left:30%;margin-top:30px"><!--form-->
+                <div class="container">
+                    <div class="col-sm-4 col-sm-offset-1">
+                        <div class="signup-form"><!--signup form-->
+                            <h2>New User Sign_Up</h2>
+                            <form method="post">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                    {{ field.errors }}
+                                    <p>{{ field }}</p>
+                                {% endfor %}
+                                <button class="btn btn-default" type="submit">SignUp</button><br>
+                                <span style="margin-left:80px;">Already have an Account&nbsp;&rarr;&nbsp;</span><a href="{% url 'login' %}">login</a>
+                            </form>
+                        </div><!--signup form-->
+                    </div>
+                </div>
+        </section>
+        {% endblock %}
+
+login.html
+        {% extends 'master.html' %}
+        {% block body %}
+        <section id="form" style="margin-left:30%;margin-top:30px"><!--form-->
+                <div class="container">
+                    <div class="col-sm-4 col-sm-offset-1">
+                        <div class="signup-form"><!--login form-->
+                            <h2>Log in to account</h2>
+                            <form method="post" >
+                                {% csrf_token %}
+                                {% for field in form %}
+                                    {{ field.errors }}
+                                    <label>{{field.label_tag}}</label>
+                                    <p>{{ field }}</p>
+                                {% endfor %}
+                                <a href="{% url 'password_reset' %}" style="float:right;">Forgot Password ?</a><br>
+                                <button class="btn btn-default" type="submit">Log In</button><br>
+                                <span style="margin-left:80px;">Already have an Account&nbsp;&rarr;&nbsp;</span><a href="{% url 'signup' %}">signup</a>
+                            </form>
+                        </div><!--login form-->
+                    </div>
+                </div>
+        </section>
+        {% endblock %}
+
+views.py
+        from django.contrib.auth import authenticate,login,logout
+
+urls.py
+        path("accounts/", include("django.contrib.auth.urls")),
+
+setting.py
+        LOGIN_REDIRECT_URL = 'index'
+        LOGOUT_REDIRECT_URL = 'index'
+
+
+if user already login and if user try to logout but django logout function didn't work then do below steps:
+views.py
+    def Logout(request):
+        return render(request, "index.html")
+
+    But always keep the logout and index functions the same
+
+urls.py
+    path('logout/',views.Logout,name='logout'),
+
+after complete above step then do work on forgot password using django in-build feature.
+create password reset pages in registration folder like:
+    1.password_reset_form.html
+    2.password_reset_done.html
+    3.password_reset_confirm.html
+    4.password_reset_complete.html
+
+1.password_reset_form.html
+        {% extends 'master.html' %}
+        {% block body %}
+        <section id="form" style="margin-left:30%;margin-top:30px"><!--form-->
+                <div class="container">
+                    <div class="col-sm-4 col-sm-offset-1">
+                        <div class="signup-form"><!--login form-->
+                            <h2>Reset Password</h2>
+                            <form method="post" >
+                                {% csrf_token %}
+                                {% for field in form %}
+                                    {{ field.errors }}
+                                    <label>{{field.label_tag}}</label>
+                                    <p>{{ field }}</p>
+                                {% endfor %}
+                                <button class="btn btn-default" type="submit">send Confirmation Link</button><br>
+                            </form>
+                        </div><!--login form-->
+                    </div>
+                </div>
+        </section>
+        {% endblock %}
+
+add following steps in setting.py for send forgot password link
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'company email'
+EMAIL_HOST_PASSWORD = 'company email password'
+
+2.password_reset_done.html
+        {% extends 'master.html' %}
+        {% block body %}
+        <div class="container">
+            <div class="col-sm-4">
+                <h2>Peset Password</h2>
+                <p>I have mailed to instruction for resetting your password</p>
+                <p>If you didn't have recieve it verified you entered correct mail and / or check your spam folder</p>
+            </div>
+        </div>
+        {% endblock %}
+
+3.password_reset_confirm.html
+        {% extends 'master.html' %}
+        {% block body %}
+        <section id="form" style="margin-left:30%;margin-top:30px"><!--form-->
+                <div class="container">
+                    <div class="col-sm-4 col-sm-offset-1">
+                        <div class="signup-form"><!--login form-->
+                            <h2>New Password</h2>
+                            {% if validlink %}
+                            <form method="post" >
+                                {% csrf_token %}
+                                {% for field in form %}
+                                    {{ field.errors }}
+                                    <label>{{field.label_tag}}</label>
+                                    <p>{{ field }}</p>
+                                {% endfor %}
+                                <button class="btn btn-default" type="submit">Save</button><br>
+                            </form>
+                            <p style="color:red;">Invalid Token</p>
+                            <p>
+                                <a href="{% url 'password_reset' %}">Request a new password reset token</a>
+                            </p>
+                            {% endif %}
+                        </div><!--login form-->
+                    </div>
+                </div>
+        </section>
+        {% endblock %}
+
+4.password_reset_complete.html
+        {% extends 'master.html' %}
+        {% block body %}
+        <div class="container">
+            <div class="col-sm-4">
+                <h2>Password has been Changed</h2>
+                <p>You May Go Ahead and Lonin now </p>
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+        {% endblock %}
+
+
+how to cart product with using django cart function
+
+
