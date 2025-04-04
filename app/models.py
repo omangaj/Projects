@@ -115,19 +115,58 @@ class Contact_us(models.Model):
     class Meta:
         verbose_name_plural="8. Contact_us"
 
+class User_info(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    surname = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    mobile = models.CharField(max_length=10)
+    address = models.TextField()
+    city = models.CharField(max_length=30)
+    sub_district = models.CharField(max_length=30)
+    district = models.CharField(max_length=30)
+    state = models.CharField(max_length=30)
+    pincode = models.CharField(max_length=6)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "9. User_info"
+
+
 class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_info = models.ForeignKey(User_info, on_delete=models.CASCADE)
+    order_id = models.CharField(max_length=150)
     image=models.ImageField(upload_to="ecommerce/order_img")
     product=models.CharField(max_length=100)
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
     quantity=models.IntegerField()
     price=models.IntegerField()
-    total=models.IntegerField()
-    address=models.TextField()
-    mobile=models.CharField(max_length=10)
-    pincode=models.CharField(max_length=10)
+    pro_total=models.IntegerField()
     date=models.DateField(default=datetime.datetime.today)
 
     def __str__(self):
         return self.product
     class Meta:
-        verbose_name_plural="9. Order"
+        verbose_name_plural="10. Order"
+
+
+class Cart(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Cart - {self.user.username if self.user else 'Anonymous'}"
+
+# Cart Item (Stores Items in Cart)
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="items")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def total_price(self):
+        return self.product.price * self.quantity
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name}"

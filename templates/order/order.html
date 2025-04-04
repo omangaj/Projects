@@ -24,10 +24,10 @@
                     {% for i in order %}
 						<tr>
 							<td class="cart_product">
-								<a href="{{value.image}}"><img src="{{i.image}}" alt="" height="300px"></a>
+								<a href="{{value.image}}"><img src="{{i.image.url}}" alt="" height="100px"></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">{{i.name}}</a></h4>
+								<h4><a href="">{{i.product}}</a></h4>
 							</td>
 							<td class="cart_price">
 								<p>₹ {{i.price}}</p>
@@ -38,7 +38,7 @@
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">₹ {{ i.total }}</p>
+								<p class="cart_total_price">₹ {{ i.pro_total }}</p>
 							</td>
 						</tr>
                     {% endfor %}

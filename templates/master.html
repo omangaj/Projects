@@ -42,15 +42,15 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 
-								{% if user.is_authenticated and user.first_name == '' %}
-									<li><a href="#"><i class="fa fa-user"></i> Welcome , {{user.username}}</a></li>
+								{% if user.is_authenticated %}
+									<li><a href="{% url 'user_detail' %}"><i class="fa fa-user"></i> Welcome , {{user.username}}</a></li>
 									<li><a href="{% url 'order' %}"><i class="fa fa-crosshairs"></i> Orders</a></li>
-									<li><a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i> Cart <span class="badge badge-secondary">{{request.session.cart|length}}</span></a></li>
+									<li><a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i> Cart <span class="badge badge-secondary">{{ cartitem|length }}</span></a></li>
 									<li><a href="{% url 'logout' %}"><i class="fa fa-lock"></i> Logout</a></li>
 								{% else %}
 									<li><a href="{% url 'login' %}"><i class="fa fa-user"></i> Account</a></li>
 									<li><a href="{% url 'login' %}"><i class="fa fa-crosshairs"></i> Orders</a></li>
-									<li><a href="{% url 'login' %}"><i class="fa fa-shopping-cart"></i> Cart <span class="badge badge-secondary">{{request.session.cart|length}}</span></a></li>
+									<li><a href="{% url 'login' %}"><i class="fa fa-shopping-cart"></i> Cart <span class="badge badge-secondary">0</span></a></li>
 									<li><a href="{% url 'login' %}"><i class="fa fa-lock"></i> login</a></li>
 								{% endif %}
 
@@ -73,6 +73,9 @@
 								<span class="icon-bar"></span>
 							</button>
 						</div>
+
+
+
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="{% url 'index' %}" class="{% if request.path == '' %} active {% endif %}">Home</a></li>
@@ -81,10 +84,10 @@
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="{% url 'product' %}">Products</a></li>
 										{% if user.is_authenticated %}
-											<li><a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i> Cart <span class="badge badge-secondary">{{request.session.cart|length}}</span></a></li>
+											<li><a href="{% url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i> Cart <span class="badge badge-secondary">{{ cartitem|length }}</span></a></li>
 											<li><a href="{% url 'logout' %}"><i class="fa fa-lock"></i> Logout</a></li>
 										{% else %}
-											<li><a href="{% url 'login' %}"><i class="fa fa-shopping-cart"></i> Cart <span class="badge badge-secondary">{{request.session.cart|length}}</span></a></li>
+											<li><a href="{% url 'login' %}"><i class="fa fa-shopping-cart"></i> Cart <span class="badge badge-secondary">0</span></a></li>
 											<li><a href="{% url 'login' %}"><i class="fa fa-lock"></i> login</a></li>
 										{% endif %}
                                     </ul>

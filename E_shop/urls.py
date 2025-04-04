@@ -35,7 +35,8 @@ urlpatterns = [
     path('contact_us/',views.Contact,name="contact_us"),
     #order
     path('checkout/',views.Checkout,name="checkout"),
-
+    #user
+    path('user_detail/',views.User_detail,name="user_detail"),
 
     #cart
     path('cart/add/<int:id>/', views.cart_add, name='cart_add'),
@@ -47,6 +48,7 @@ urlpatterns = [
 
     #order
     path('order/',views.Your_Order,name='order'),
+    # path('place_order/',views.Place_order,name='place_order'),
     #product
     path('product/',views.Product_page,name='product'),
     #product detail

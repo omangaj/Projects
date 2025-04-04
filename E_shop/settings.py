@@ -46,8 +46,6 @@ INSTALLED_APPS = [
     'tinymce',
 ]
 
-CART_SESSION_ID = 'cart'
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -71,7 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'cart.context_processor.cart_total_amount',
+                'cart.context_processor.cart_total_amount'
             ],
         },
     },
@@ -144,6 +142,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CART_SESSION_ID = 'cart'
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -163,3 +163,10 @@ TINYMCE_DEFAULT_CONFIG = {
     "toolbar": "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | "
                "bullist numlist outdent indent | link image media | code preview",
 }
+
+LOGIN_URL = '/login/'
+
+
+KEY_ID="rzp_test_7TZsLil3ml0Yy7"
+KEY_SECRET="PL96Of68cQipgo6VcXoQ2aB6"
+
