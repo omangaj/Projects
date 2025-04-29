@@ -23,6 +23,10 @@ class Sub_categoriesAdmin(admin.ModelAdmin):
     list_display=['id','name']
 admin.site.register(Sub_categories,Sub_categoriesAdmin)
 
+class CategoriesAdmin(admin.ModelAdmin):
+    list_display=['id','name']
+admin.site.register(Categories,CategoriesAdmin)
+
 class BrandAdmin(admin.ModelAdmin):
     list_display=['id','name']
 admin.site.register(Brand,BrandAdmin)

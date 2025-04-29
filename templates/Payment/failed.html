@@ -1,0 +1,42 @@
+{% extends 'master.html' %}
+{% block body %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container_fail {
+            background: #fff0f0;
+            padding: 30px;
+            border: 1px solid #cc0000;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        a.button {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #cc0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a.button:hover {
+            background-color: #a00000;
+        }
+    </style>
+
+    <div class="container_fail">
+        <h1>Payment Failed</h1>
+        <p>We're sorry, but your payment could not be processed.</p>
+        <p>Please try again or contact support if the issue persists.</p>
+        <a href="{% url 'index' %}" class="button">Return to Home</a>
+    </div>
+{% endblock %}

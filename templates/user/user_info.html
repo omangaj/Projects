@@ -11,39 +11,40 @@
                     <h2 class="title text-center">User Details</h2>
                     <div class="status alert alert-success" style="display: none"></div>
                         <div class="form-group col-md-6">
-                            <input type="text" name="name" class="form-control" required="required"  value="{{user.first_name}}" readonly>
+                            <input type="text" name="name" class="form-control" required="required"  value="{{data.name}}" readonly>
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" name="surname" class="form-control" required="required"  value="{{user.last_name}}" readonly>
+                            <input type="text" name="surname" class="form-control" required="required"  value="{{data.surname}}" readonly>
                         </div>
                         <div class="form-group col-md-6">
-                           <input type="text" name="username" class="form-control" required="required" value="{{user.username}}" readonly>
+                           <input type="text" name="username" class="form-control" required="required" value="{{data}}" readonly>
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="email" name="email" class="form-control" required="required" value="{{user.email}}" readonly>
+                            <input type="email" name="email" class="form-control" required="required" value="{{data.email}}" readonly>
                         </div>
                         <div class="form-group col-md-12">
-                            <textarea name="address" required="required" class="form-control" placeholder="Address"></textarea>
+                            <input name="address" class="form-control" required="required" value="{{data.address}}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="number" name="mobile" class="form-control" required="required" placeholder="Mobile">
+                            <input type="number" name="mobile" class="form-control" required="required" value="{{data.mobile}}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" name="city" class="form-control" required="required" placeholder="City/village">
+                            <input type="text" name="city" class="form-control" required="required" value="{{data.city}}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" name="sub_district" class="form-control" required="required" placeholder="Sub-district">
+                            <input type="text" name="sub_district" class="form-control" required="required" value="{{data.sub_district}}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" name="district" class="form-control" required="required" placeholder="District">
+                            <input type="text" name="district" class="form-control" required="required" value="{{data.district}}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" name="state" class="form-control" required="required" placeholder="State">
+                            <input type="text" name="state" class="form-control" required="required" value="{{data.state}}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="number" name="pincode" class="form-control" required="required" placeholder="Pincode">
+                            <input type="number" name="pincode" class="form-control" required="required" value="{{data.pincode}}">
                         </div>
                 </div>
+
                 <div class="form-group col-md-12">
                 <a href="{% url 'index' %}"><input type="submit" name="submit"  class="btn btn-primary pull-right" value="Submit"></a>
             </div>

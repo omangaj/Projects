@@ -118,11 +118,11 @@
 					<div class="features_items" ><!--features_items-->
 						<h2 class="title text-center">Features Items</h2>
 						{% for prod in product %}
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<div class="product-image-wrapper overlay-content" style="box-shadow:rgba(0,0,0,0.24) 0px 3px 8px;">
 								<div class="single-products">
 										<div class="productinfo text-center">
-											<a href="{% url 'product_detail' prod.id %}"><img src="{{prod.image.url}}" alt="" height="300px" /></a>
+											<a href="{% url 'product_detail' prod.id %}"><img src="{{prod.image.url}}" alt="" height="200px"></a>
 											<a href="{% url 'product_detail' prod.id %}"><h4 style="color:orange">{{prod.name}}</h4></a>
 											<h5>₹{{prod.price}}</h5>
 											{% if request.is_authenticated %}
@@ -134,7 +134,7 @@
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
-												<a href="{% url 'product_detail' prod.id %}"><img src="{{prod.image.url}}" alt="" height="290px" width="230px"/></a>
+												<a href="{% url 'product_detail' prod.id %}"><img src="{{prod.image.url}}" alt="" height="190px" width="130px"></a>
 												<a href="{% url 'product_detail' prod.id %}"><h4>{{prod.name}}</h4></a>
 												<h5>₹{{prod.price}}</h5>
 												{% if request.user.is_authenticated %}
@@ -536,6 +536,46 @@
 <!--							  </a>-->
 <!--						</div>-->
 <!--					</div>&lt;!&ndash;/recommended_items&ndash;&gt;-->
+
+					<div class="d-flex text-center mt-4">
+					  <nav>
+						<ul class="pagination">
+
+						  {% if product.has_previous %}
+							<li class="page-item">
+							  <a class="page-link" href="?{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}{% if request.GET.brand %}brand={{ request.GET.brand }}&{% endif %}page={{ product.previous_page_number }}" aria-label="Previous">
+								<span aria-hidden="true">&laquo; Previous</span>
+							  </a>
+							</li>
+						  {% else %}
+							<li class="page-item disabled">
+							  <span class="page-link" aria-hidden="true">&laquo; Previous</span>
+							</li>
+						  {% endif %}
+
+						  <li class="page-item disabled">
+							<span class="page-link">
+							  Page {{ product.number }} of {{ product.paginator.num_pages }}
+							</span>
+						  </li>
+
+						  {% if product.has_next %}
+							<li class="page-item">
+							  <a class="page-link" href="?{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}{% if request.GET.brand %}brand={{ request.GET.brand }}&{% endif %}page={{ product.next_page_number }}" aria-label="Next">
+								<span aria-hidden="true">Next &raquo;</span>
+							  </a>
+							</li>
+						  {% else %}
+							<li class="page-item disabled">
+							  <span class="page-link" aria-hidden="true">Next &raquo;</span>
+							</li>
+						  {% endif %}
+
+						</ul>
+					  </nav>
+					</div>
+
+
 
 				</div>
 			</div>

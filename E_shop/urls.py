@@ -46,13 +46,19 @@ urlpatterns = [
     path('cart/cart_clear/', views.cart_clear, name='cart_clear'),
     path('cart/cart-detail/',views.cart_detail,name='cart_detail'),
 
-    #order
-    path('order/',views.Your_Order,name='order'),
-    # path('place_order/',views.Place_order,name='place_order'),
     #product
     path('product/',views.Product_page,name='product'),
     #product detail
     path('product/<int:id>/',views.Product_detail,name='product_detail'),
+    #Buy
+    path('buy/<int:id>/',views.Buy,name="buy"),
+    #order
+    path('order/',views.Your_Order,name='order'),
+    # path('place_order/',views.Place_order,name='place_order'),
+    #payment
+    path('verify_payment/',views.Verify_payment,name='verify_payment'),
+    path('payment_success/',views.Success,name='payment_success'),
+    path('payment_failed/',views.Failed,name='payment_failed'),
     #tinyemce
     path('tinymce/', include('tinymce.urls')),
     #search

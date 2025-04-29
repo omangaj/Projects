@@ -10,6 +10,8 @@
                 <div class="order-info">
                     <h2 class="title text-center">Your Order</h2>
                     <div class="status alert alert-success" style="display: none"></div>
+
+                    {% if product %}
                     <table class="table">
                         <thead style="font-size:20px">
                             <tr>
@@ -19,16 +21,45 @@
                                 <th scope="col">Total</th>
                             </tr>
                         </thead>
+
                         <tbody>
-                            {% for cart in cartitem %}
+                            <tr>
+                                <td><h4><input type="text" name="b_product" value="{{ product }}"  style="border:none;outline:None" readonly></h4></td>
+                                <td><h4><input type="text" name="b_quantity" value="1"  style="border:none;outline:None" readonly></h4></td>
+                                <td><h4>₹<input type="text" name="b_price" value="{{product.price }}"  style="border:none;outline:None" readonly></h4></td>
+                                <td><h4>₹<input type="text" name="b_total" value="{{ product.price}}"  style="border:none;outline:None" readonly></h4></td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><h4>Total Quantity</h4></td>
+                                <td><h4>1</h4></td>
+                                <td><h4>Total Price</h4></td>
+                                <td><h4>₹{{product.price }}</h4></td>
+                            </tr>
+                        <tfoot>
+                    </table>
+                    {% else %}
+                    <table class="table">
+                        <thead style="font-size:20px">
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        {% for cart in cartitem %}
+                        <tbody>
                             <tr>
                                 <td><strong>{{ cart.product }}</strong></td>
                                 <td>{{ cart.quantity }}</td>
                                 <td>₹{{ cart.product.price }}</td>
                                 <td><strong>₹{{ cart.product.price|multiply:cart.quantity }}</strong></td>
                             </tr>
-                            {% endfor %}
                         </tbody>
+                        {% endfor %}
                         <tfoot>
                             <tr>
                                 <td><h4>Total Quantity</h4></td>
@@ -38,30 +69,18 @@
                             </tr>
                         </tfoot>
                     </table>
+                    {% endif %}
                 </div>
             </div>
 
-
-            <select id="username" name="username" class="form-select" required onchange="enableButton()">
-                <option value="" disabled selected>Select an Address</option>
-                {% for u in address %}
-                <option value="{{ u.address }}">{{ u.address }}</option>  <!-- Add value attribute -->
-                {% endfor %}
-            </select>
-
-
+            <a href="{% url 'user_detail' %}"><button type="button" class="btn btn-primary">Change Address</button></a>
             <div class="form-group col-md-12">
-               <button type="submit" id="rzp-button1" class="btn btn-primary pull-right" disabled>Payment</button>
+               <button type="submit" name="action" value="create_payment" id="rzp-button1" class="btn btn-primary pull-right">Payment</button>
             </div>
         </form>
     </div>
 </div>
 
-<script>
-    function enableButton() {
-        document.getElementById("rzp-button1").disabled = false;
-    }
-</script>
 
 {% if payment is not None %}
 
@@ -75,7 +94,7 @@ var options = {
     "description": "{{payment.receipt}}",
     "image": "https://example.com/your_logo",
     "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "callback_url": "{% url 'index' %}",
+    "callback_url":"http://127.0.0.1:8000/verify_payment/",
     "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
         "name": "Gaurav Kumar", //your customer's name
         "email": "gaurav.kumar@example.com",

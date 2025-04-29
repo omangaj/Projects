@@ -36,7 +36,7 @@ class Categories(models.Model):
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name_plural="4. Categories"
+        verbose_name_plural="3. Categories"
 
 class Sub_categories(models.Model):
     name=models.CharField(max_length=150)
@@ -45,7 +45,7 @@ class Sub_categories(models.Model):
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name_plural="5. Sub_categories"
+        verbose_name_plural="4. Sub_categories"
 
 class Brand(models.Model):
     name=models.CharField(max_length=50)
@@ -53,7 +53,7 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name_plural="6. Brand"
+        verbose_name_plural="5. Brand"
 
 
 class Product(models.Model):
@@ -73,7 +73,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name_plural="7. Product"
+        verbose_name_plural="6. Product"
 
 
 class UserCreateForm(UserCreationForm):
@@ -113,7 +113,7 @@ class Contact_us(models.Model):
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name_plural="8. Contact_us"
+        verbose_name_plural="7. Contact_us"
 
 class User_info(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
@@ -132,7 +132,7 @@ class User_info(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = "9. User_info"
+        verbose_name_plural = "8. User_info"
 
 
 class Order(models.Model):
@@ -144,12 +144,13 @@ class Order(models.Model):
     quantity=models.IntegerField()
     price=models.IntegerField()
     pro_total=models.IntegerField()
+    payment=models.CharField(max_length=10,null=True,default="Unpaid")
     date=models.DateField(default=datetime.datetime.today)
 
     def __str__(self):
         return self.product
     class Meta:
-        verbose_name_plural="10. Order"
+        verbose_name_plural="9. Order"
 
 
 class Cart(models.Model):
@@ -158,6 +159,8 @@ class Cart(models.Model):
 
     def __str__(self):
         return f"Cart - {self.user.username if self.user else 'Anonymous'}"
+    class Meta:
+        verbose_name_plural="10. Cart"
 
 # Cart Item (Stores Items in Cart)
 class CartItem(models.Model):
@@ -170,3 +173,5 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"
+    class Meta:
+        verbose_name_plural="11. CartItem"

@@ -1,0 +1,25 @@
+{% extends 'master.html' %}
+{% block body %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .success-box {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 40px;
+            display: inline-block;
+            box-shadow: 0px 0px 10px rgba(0, 128, 0, 0.2);
+        }
+        .success-box h1 {
+            color: #28a745;
+        }
+    </style>
+
+    <div class="success-box">
+        <h1>🎉 Payment Successful!</h1>
+        <p>Thank you for your purchase.</p>
+        <a href="{% url 'index' %}">Back to Home</a>
+    </div>
+{% endblock %}
