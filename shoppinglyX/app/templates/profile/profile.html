@@ -1,0 +1,81 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block body %}
+<div class="container my-5">
+ <div class="row d-flex">
+
+  <div class="col-sm-3">
+    <h3>Welcome Sonam</h3>
+   <ul class="list-unstyled">
+    <li class="d-grid"><a href="{% url 'profile' %}" class="btn btn-primary">Profile</a></li>
+    <li class="d-grid"><a href="{% url 'address' %}" class="btn">Address</a></li>
+   </ul>
+  </div>
+  <div class="col-sm-9">
+  {% if user.is_authenticated %}
+   <form action="{{request.get_full_path}}" method="post">
+    {% csrf_token %}
+   <div class="d-flex">
+       <div class="col-md-4">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" value="{{ user }}" class="form-control" id="username" readonly>
+        </div>
+       <div class="col-md-8">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+       </div>
+    </div>
+   <div class="d-flex">
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="col-md-6">
+          <label for="mobile" class="form-label">Mobile Number</label>
+          <input type="text" class="form-control" id="mobile" name="mobile" required>
+        </div>
+    </div>
+    <div class="col-12">
+      <label for="address" class="form-label">Address</label>
+      <input type="text" class="form-control" id="address" name="address" required>
+    </div>
+   <div class="d-flex">
+       <div class="col-md-6">
+          <label for="village" class="form-label">Village</label>
+          <input type="text" class="form-control" id="village" name="village" required>
+        </div>
+        <div class="col-6">
+          <label for="city" class="form-label">City</label>
+          <input type="text" class="form-control" id="city" name="city" required>
+        </div>
+    </div>
+   <div class="d-flex">
+       <div class="col-md-6">
+          <label for="sub_district" class="form-label">Sub-District</label>
+          <input type="text" class="form-control" id="sub_district" name="sub_district" required>
+        </div>
+        <div class="col-md-6">
+          <label for="district" class="form-label">District</label>
+          <input type="text" class="form-control" id="district" name="district" required>
+        </div>
+    </div>
+    <div class="d-flex">
+        <div class="col-md-6">
+          <label for="state" class="form-label">State</label>
+          <input type="text" class="form-control" id="state" name="state" required>
+        </div>
+        <div class="col-md-6">
+          <label for="pincode" class="form-label">Pincode</label>
+          <input type="text" class="form-control" id="pincode" name="pincode" required>
+        </div>
+    </div>
+    <div class="col-12 mt-3">
+        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+    </div>
+   </form>
+  {% endif %}
+  </div>
+ </div>
+</div>
+{% endblock  %}

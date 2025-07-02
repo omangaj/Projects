@@ -1,0 +1,105 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Product Detail{% endblock title %}
+{% block body %}
+ {% if product %}
+  <div class="container my-3">
+   <div class="row">
+    <div class="col-sm-6">
+     <img src="{{product.prod_image.url}}" alt="{{product.title}}" height="600px">
+    </div>
+    <div class="col-sm-6 ">
+     <h2>Product Title: {{product.title}}</h2>
+     <hr>
+     <p>Product Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, at. Dignissimos rerum incidunt temporibus laudantium. Rem, eveniet corporis. Itaque delectus quae nesciunt nemo, maiores minus deserunt vel. Vero, nulla quisquam!</p> <br>
+     {% if product.discount > 0 %}
+      <div class="d-flex">
+       <h4>Rs.{{product.offer_price}}</h4> &nbsp;<h6 style="color:green">{{product.discount}}%</h6>&nbsp;&nbsp;<h4><small class="fw-light text-decoration-line-through">{{product.price}}</small></h4><br>
+      </div>
+     {% else %}
+      <div class="d-flex">
+       <h4>Rs.{{product.price}}</h4>
+      </div>
+     {% endif %}
+     <a href="{% url 'cart_add' product.id product.field %}" class="btn btn-primary shadow px-5 py-2">Add to Cart</a>
+     <a href="{% url 'buy' product.id product.field %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
+     <h5 class="mt-5">Available Offers</h5>
+     <ul>
+      <li>Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit</li>
+      <li>Special Price Get extra ₹3000 off (price inclusive of discount)</li>
+      <li>No cost EMI ₹1,667/month. Standard EMI also available</li>
+      <li>Partner Offer ₹2000 Flipkart Gift Card on Every 1000th Transaction with a new Visa Debit/Credit Card</li>
+     </ul>
+    </div>
+   </div>
+  </div>
+  <h2 class="mx-3"> All Products </h2>
+     <div class="row m-3">
+         {% for prod in products %}
+          {% if prod.brand == product.brand %}
+           <div class="col-sm-2 my-2">
+               <a href="{% url 'product_detail' prod.id %}" style="text-decoration:None">
+                   <div class="m-0">
+                     <img src="{{ prod.prod_image.url }}" alt="{{prod.title}}" height="90%" width="90%" style="margin-left:5%">
+                     <div class="card-body text-center" style="color:black">
+                         <h4 class="fw-bold">{{prod.title}}</h4><h5 class="fs-5">Rs. {{prod.offer_price}}</h5>
+                     </div>
+                   </div>
+               </a>
+           </div>
+          {% endif %}
+         {% endfor %}
+     </div>
+ {% else %}
+  <div class="container my-3">
+   <div class="row">
+    <div class="col-sm-6">
+     <img src="{{one_day.prod_image.url}}" alt="{{one_day.product}}" height="600px">
+    </div>
+    <div class="col-sm-6 ">
+     <h2>Product Title: {{one_day.title}}</h2>
+     <hr>
+     <p>Product Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, at. Dignissimos rerum incidunt temporibus laudantium. Rem, eveniet corporis. Itaque delectus quae nesciunt nemo, maiores minus deserunt vel. Vero, nulla quisquam!</p> <br>
+     {% if one_day.discount > 0 %}
+      <div class="d-flex">
+       <h4>Rs.{{one_day.offer_price}}</h4> &nbsp;<h6 style="color:green">{{one_day.discount}}%</h6>&nbsp;&nbsp;<h4><small class="fw-light text-decoration-line-through">{{product.price}}</small></h4><br>
+      </div>
+     {% else %}
+      <div class="d-flex">
+       <h4>Rs.{{one_day.price}}</h4>
+      </div>
+     {% endif %}
+     <a href="{% url 'cart_add' one_day.id one_day.field %}" class="btn btn-primary shadow px-5 py-2">Add to Cart</a>
+     <a href="{% url 'buy' one_day.id one_day.field %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
+     <h5 class="mt-5">Available Offers</h5>
+     <ul>
+      <li>Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit</li>
+      <li>Special Price Get extra ₹3000 off (price inclusive of discount)</li>
+      <li>No cost EMI ₹1,667/month. Standard EMI also available</li>
+      <li>Partner Offer ₹2000 Flipkart Gift Card on Every 1000th Transaction with a new Visa Debit/Credit Card</li>
+     </ul>
+    </div>
+   </div>
+  </div>
+
+  <h2 class="mx-3"> All Products </h2>
+     <div class="row m-3">
+         {% for prod in products %}
+          {% if prod.brand == one_day.brand %}
+           <div class="col-sm-2 my-2">
+               <a href="{% url 'product_detail' prod.id %}" style="text-decoration:None">
+                   <div class="m-0">
+                     <img src="{{ prod.prod_image.url }}" alt="{{prod.title}}" height="90%" width="90%" style="margin-left:5%">
+                     <div class="card-body text-center" style="color:black">
+                         <h4 class="fw-bold">{{prod.title}}</h4><h5 class="fs-5">Rs. {{prod.offer_price}}</h5>
+                     </div>
+                   </div>
+               </a>
+           </div>
+          {% endif %}
+         {% endfor %}
+     </div>
+
+
+ {% endif %}
+{% endblock %}

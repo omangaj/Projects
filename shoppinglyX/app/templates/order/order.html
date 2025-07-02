@@ -1,0 +1,60 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Order{% endblock title %}
+{% load cart_tag %}
+{% load prod_total %}
+{% block body %}
+<div class="container my-3">
+  <div class="row d-flex"> <!-- Add d-flex for flex behavior -->
+    <h1 class="col-12 text-center">My Orders</h1>
+
+    <!-- Cart Section -->
+    <div class="col-sm-12">
+      <div class="card h-100"> <!-- h-100 ensures equal height with amount card if needed -->
+        <div class="card-body">
+          <h3>Orders</h3>
+
+          {% for item in ordered %}
+            {% if item.payment == "paid" %}
+            <div class="row mb-2">
+              <div class="col-sm-3 text-center align-self-center">
+                <img src="{{item.image.url}}" alt="" class="img-fluid img-thumbnail shadow-sm" height="120" width="120">
+              </div>
+              <div class="col-sm-9 mb-2 mt-2">
+                <h5>{{item.product.title}}</h5>
+                <p class="mb-1 text-muted small">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, at. Dignissimos rerum incidunt temporibus laudantium. Rem, eveniet corporis. Itaque delectus quae nesciunt nemo, maiores minus deserunt vel. Vero, nulla quisquam!</p>
+
+                <div class="d-flex justify-content-between">
+                  <h6>₹ : {{item.price}}</h6>
+                  <div>
+                    <label for="quantity">Quantity :</label>
+                    <span id="quantity">{{item.quantity}}</span>
+                  </div>
+                  <p>Delivery charge&nbsp;:&nbsp;{{item.delivery}}</p>
+                  <h5 class="mb-0"><strong>₹ {{ item.pro_total }}</strong></h5>
+                </div>
+              </div>
+              <hr>
+              </div>
+            {% endif %}
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+ <div class="row">
+  <div class="col-sm-12">
+   <div class="card">
+    <div class="card-body text-center">
+      <h5 class="mb-4 ">We accept</h5>
+      <img src="{% static 'app/images/payment.png' %}" alt="" class="img-fluid">
+    </div>
+  </div>
+  </div>
+ </div>
+</div>
+{% endblock %}

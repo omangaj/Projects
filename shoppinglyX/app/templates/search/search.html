@@ -1,0 +1,62 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}search{% endblock title %}
+{% block body %}
+
+<div class="row m-3">
+        {% for prod in product %}
+            <div class="col-sm-2 my-2">
+                <a href="{% url 'product_detail' prod.id %}" style="text-decoration:None">
+                    <div class="m-0">
+                      <img src="{{ prod.prod_image.url }}" alt="{{prod.title}}" height="90%" width="90%" style="margin-left:5%">
+                      <div class="card-body text-center" style="color:black">
+                          <h4 class="fw-bold">{{prod.title}}</h4><h5 class="fs-5">Rs. {{prod.offer_price}}</h5>
+                      </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}}
+
+
+
+
+<section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					{% for i in slider %}
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="{{i.id}}"class="active"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="item active" >
+								<div class="col-sm-6">
+									<h1><span>{{i.heading}}</span></h1>
+									<h2>{{i.title}}</h2>
+									<p>{{i.desc}}</p>
+								</div>
+								<div class="col-sm-6">
+									<img src="{{i.image.url}}" class="girl img-responsive" alt="" />
+									<img src="{{i.offer_img.url}}"  class="pricing" alt="" />
+								</div>
+							</div>
+
+						</div>
+
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->

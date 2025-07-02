@@ -1,0 +1,23 @@
+{% extends 'app/base.html' %}
+{% block title %}SignUp{% endblock title %}
+{% load static %}
+{% block body %}
+<section id="form" class="signup_form"><!--form-->
+		<div class="container col-sm-8 col-sm-offset-1">
+			<div class="">
+				<div class="signup-form"><!--signup form-->
+					<h2>New User Registration</h2>
+					<form method="post">
+						{% csrf_token %}
+						{% for field in form %}
+							{{ field.errors }}
+							<p>{{ field }}</p>
+						{% endfor %}
+						<button class="btn btn-default" type="submit">SignUp</button><br>
+						<span style="text-align: center;">Already have an Account&nbsp;&rarr;&nbsp;</span><a href="{% url 'login' %}">login</a>
+					</form>
+				</div><!--signup form-->
+			</div>
+		</div>
+</section>
+{% endblock %}

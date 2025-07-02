@@ -1,0 +1,129 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Checkout{% endblock title %}
+{% load cart_tag %}
+{% load prod_total %}
+{% block body %}
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-sm-6">
+      <h4>Order Summary</h4>
+      <hr>
+      {% for item in cartitem %}
+        {% if item.product %}
+          <div class="card mb-1">
+            <div class="card-body p-2">
+              <h5>Product : {{item.product.title}}</h5>
+              <div class="d-flex justify-content-between">
+                <p>Quantity : {{item.quantity}}</p>
+                <b><p class="fw-bold">Price : {{ item.product.offer_price|float_add:item.product.delivery|multiply:item.quantity }}</p></b>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <div class="card mb-1">
+            <div class="card-body p-2">
+              <h5>Product : {{item.one_day.title}}</h5>
+              <div class="d-flex justify-content-between">
+                <p>Quantity : {{item.quantity}}</p>
+                <b><p class="fw-bold">Price : {{ item.one_day.offer_price|float_add:item.one_day.delivery|multiply:item.quantity }}</p></b>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      <div class="card mb-1">
+          <div class="card-body p-2">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex"><h6>Product Quantity</h6>&nbsp;:&nbsp;<h6>{{cartitem|length}}</h6></div>
+              <div class="d-flex"><h6>Total Price</h6>&nbsp;:&nbsp;<h6>₹ {{total_amount }}</h6></div>
+            </div>
+          </div>
+      </div>
+        <button type="button" name="action" value="create_payment" id="rzp-button1" class="btn btn-primary mt-3 px-5 fw-bold" disabled>Payment</button>
+
+    </div>
+    <div class="col-sm-4 offset-sm-1">
+      <h4>Select Shipping Address</h4>
+      <hr>
+      <form id="addressForm" method="POST" action="">
+        {% csrf_token %}
+        <div style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+          {% for user in user_info %}
+            <div class="card mb-3">
+              <div class="card-body">
+                <label>
+                  <input type="radio" name="selected_address_id" value="{{ user.id }}" required {% if forloop.first %}checked{% endif %}>
+                  <strong>{{ user.name }}</strong><br>
+                  {{ user.address }}<br>
+                  {{ user.village }}, {{ user.city }}, {{ user.sub_district }}, {{ user.district }}, {{ user.state }} - {{ user.pincode }}
+                </label>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" id="submitAddress">Submit</button>
+      </form>
+      <a href="{% url 'profile' %}?next={{request.get_full_path}}"><button type="submit" class="btn btn-primary mt-3">Add New Address</button></a>
+    </div>
+  </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+document.getElementById("addressForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  fetch("", {
+    method: "POST",
+    body: formData,
+    headers: {
+      "X-CSRFToken": formData.get('csrfmiddlewaretoken')
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Enable the payment button
+    document.getElementById("submitAddress").disabled = true;
+    const payBtn = document.getElementById("rzp-button1");
+    payBtn.disabled = false;
+
+    const options = {
+      "key": "rzp_test_7TZsLil3ml0Yy7",
+      "amount": data.amount,
+      "currency": data.currency,
+      "name": "ShoppinglyX",
+      "description": data.receipt,
+      "order_id": data.id,
+      "callback_url": "http://127.0.0.1:8000/verify_payment/",
+      "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000"
+      },
+      "notes": {
+        "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+        "color": "#3399cc"
+      }
+    };
+
+    var rzp1 = new Razorpay(options);
+    payBtn.onclick = function(e) {
+      rzp1.open();
+      e.preventDefault();
+    };
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("Failed to process address. Please try again.");
+  });
+});
+</script>
+
+
+{% endblock %}

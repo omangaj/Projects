@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Address{% endblock title %}
+{% block body %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <h3>Welcome Sonam</h3>
+   <ul class="list-unstyled">
+    <li class="d-grid"><a href="{% url 'profile' %}" class="btn">Profile</a></li>
+    <li class="d-grid"><a href="{% url 'address' %}" class="btn btn-primary">Address</a></li>
+   </ul>
+  </div>
+  <div class="col-sm-9">
+   <div class="row">
+    {% for user in user_info %}
+     <div class="col-sm-6 mb-2">
+      <div class="card">
+       <div class="card-body">
+         <p class="m-1">Name: {{user.name}}</p>
+         <p class="m-1">Address: {{user.address|truncatechars:35}}</p>
+         <p class="m-1">{{user.village}} {{user.sub_district}} {{user.district}} {{user.state}} {{user.pincode}}</p>
+       </div>
+      </div>
+     </div>
+    {% endfor %}
+
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock %}
