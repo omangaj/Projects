@@ -268,7 +268,6 @@ def User_detail(request):
             'cartitem':cartitem,
             'data':data
         }
-        print("data========================",data)
 
     if request.method=="POST":
         user = request.user
